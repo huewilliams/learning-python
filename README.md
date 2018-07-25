@@ -1,8 +1,8 @@
 # learning-python
 this repository is made for upload .py files that I learned python
 
-## Goorm Edu  
-기본 파이썬 문법 정리  
+## 기본 파이썬 문법 정리 
+Goorm Edu 
 * 함수
 * 파일 입출력
 * 클래스
