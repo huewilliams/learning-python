@@ -161,3 +161,13 @@ for s in status:
 getheaders() 함수를 사용하면 서버에 대한 정보를 리스트로 돌려줍니다.  
 리스트를 출력해보면 운영체제나 날짜, 타입 등 여러 가지 정보를 알 수 있습니다.   
 이 정보들은 크롤링하려는 홈페이지가 어떤 형식으로 만들어 졌는지 알 수 있습니다.  
+  
+### `status` : 웹 페이지의 상태 확인하기  
+<pre>
+import urllib.request
+req = urllib.request
+d = req.urlopen("https://github.com/huewilliams")
+print(d.status)
+</pre>
+웹 서버의 상태를 확인할 수 있습니다. 200 : OK  
+ 
