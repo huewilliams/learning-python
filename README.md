@@ -111,7 +111,7 @@ some_func(fargs, *args, **kwargs)
 urllib 라이브러리는 Python에서 웹과 관련된 데이터를 쉽게 이용하게 도와주는 라이브러리입니다.  
 ### `request` 모듈 
 웹을 열어서 데이터를 읽어오는 역할
-### urlopen : 웹 문서 불러오기  
+### `urlopen` : 웹 문서 불러오기  
 <pre>
 import urllib.request
 req = urllib.request
@@ -120,3 +120,44 @@ req.urlopen("https://kimdoky.github.io")
 </pre>
 urlopen함수의 인수에 데이터를 얻고 싶은 웹 페이지의 주소를 넣어 사용합니다. 
 urlopen함수는 웹에서 얻은 데이터에 대한 객체를 돌려줍니다.
+  
+### `getheaders()` : 웹 서버의 정보 받아오기  
+<pre>
+import urllib.request
+
+req = urllib.request
+d = req.urlopen("https://github.com/huewilliams")
+status = d.getheaders()
+for s in status:
+    print(s)
+</pre>
+결과
+<pre>
+('Date', 'Mon, 30 Jul 2018 02:18:59 GMT')
+('Content-Type', 'text/html; charset=utf-8')
+('Transfer-Encoding', 'chunked')
+('Connection', 'close')
+('Server', 'GitHub.com')
+('Status', '200 OK')
+('Cache-Control', 'no-cache')
+('Vary', 'X-Requested-With')
+('Set-Cookie', 'has_recent_activity=1; path=/; expires=Mon, 30 Jul 2018 03:18:58 -0000')
+('Set-Cookie', '_octo=GH1.1.736200713.1532917139; domain=.github.com; path=/; expires=Thu, 30 Jul 2020 02:18:59 -0000')
+('Set-Cookie', 'logged_in=no; domain=.github.com; path=/; expires=Fri, 30 Jul 2038 02:18:59 -0000; secure; HttpOnly')
+('Set-Cookie', '_gh_sess=STd2TERoeGQ3ZzB0ZTE1Tnd4Vnh2UGl2Z2pOU3JNZVg1ekF5QkhpNk9mcE9Oa05EZG1rY05ySjA2N1RlTlFia0doaDczK1RPaW5qTXgzdkdUNXZNTmVBbU8zWmh4SjNhNUdSTW5kZ25aNWNyUEErSUtmM2k3SEs5TkRBSG1rV1IrVlBKUlo3eVJhN0pEYVRDTnZlVmp4L28va3IxVk1HeFNqcWhaZG5jaEdYbWFEQjYyYm14N1BZVGRuWCtnTmJZNUg4NFhlMUs2KzVHbFNtc0FvN2RzQT09LS0wNkVRRlNuUUtoNlZnWWFQemFab2Z3PT0%3D--b05f12638b71dcb9bc60b300270f0317f7fc19b9; path=/; secure; HttpOnly')
+('X-Request-Id', 'b1fae8c0-2cb1-48b2-94ff-80a9fa55639e')
+('X-Runtime', '0.353048')
+('Strict-Transport-Security', 'max-age=31536000; includeSubdomains; preload')
+('X-Frame-Options', 'deny')
+('X-Content-Type-Options', 'nosniff')
+('X-XSS-Protection', '1; mode=block')
+('Referrer-Policy', 'origin-when-cross-origin, strict-origin-when-cross-origin')
+('Expect-CT', 'max-age=2592000, report-uri="https://api.github.com/_private/browser/errors"')
+('Content-Security-Policy', "default-src 'none'; base-uri 'self'; block-all-mixed-content; connect-src 'self' uploads.github.com status.github.com collector.githubapp.com api.github.com www.google-analytics.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com wss://live.github.com; font-src assets-cdn.github.com; form-action 'self' github.com gist.github.com; frame-ancestors 'none'; frame-src render.githubusercontent.com; img-src 'self' data: assets-cdn.github.com identicons.github.com collector.githubapp.com github-cloud.s3.amazonaws.com *.githubusercontent.com; manifest-src 'self'; media-src 'none'; script-src assets-cdn.github.com; style-src 'unsafe-inline' assets-cdn.github.com")
+('X-Runtime-rack', '0.360164')
+('Vary', 'Accept-Encoding')
+('X-GitHub-Request-Id', '692B:49E3:4051A5C:639D631:5B5E7592')
+</pre>
+getheaders() 함수를 사용하면 서버에 대한 정보를 리스트로 돌려줍니다.  
+리스트를 출력해보면 운영체제나 날짜, 타입 등 여러 가지 정보를 알 수 있습니다.   
+이 정보들은 크롤링하려는 홈페이지가 어떤 형식으로 만들어 졌는지 알 수 있습니다.  
