@@ -109,9 +109,9 @@ some_func(fargs, *args, **kwargs)
   
 ## `URLLIB` 라이브러리  
 urllib 라이브러리는 Python에서 웹과 관련된 데이터를 쉽게 이용하게 도와주는 라이브러리입니다.  
-### `request` 모듈 
+### 1. `request` 모듈 
 웹을 열어서 데이터를 읽어오는 역할
-### `urlopen` : 웹 문서 불러오기  
+### 2. `urlopen` : 웹 문서 불러오기  
 <pre>
 import urllib.request
 req = urllib.request
@@ -121,7 +121,7 @@ req.urlopen("https://kimdoky.github.io")
 urlopen함수의 인수에 데이터를 얻고 싶은 웹 페이지의 주소를 넣어 사용합니다. 
 urlopen함수는 웹에서 얻은 데이터에 대한 객체를 돌려줍니다.
   
-### `getheaders()` : 웹 서버의 정보 받아오기  
+### 3. `getheaders()` : 웹 서버의 정보 받아오기  
 <pre>
 import urllib.request
 
@@ -162,7 +162,7 @@ getheaders() 함수를 사용하면 서버에 대한 정보를 리스트로 돌�
 리스트를 출력해보면 운영체제나 날짜, 타입 등 여러 가지 정보를 알 수 있습니다.   
 이 정보들은 크롤링하려는 홈페이지가 어떤 형식으로 만들어 졌는지 알 수 있습니다.  
   
-### `status` : 웹 페이지의 상태 확인하기  
+### 4. `status` : 웹 페이지의 상태 확인하기  
 <pre>
 import urllib.request
 req = urllib.request
@@ -170,4 +170,19 @@ d = req.urlopen("https://github.com/huewilliams")
 print(d.status)
 </pre>
 웹 서버의 상태를 확인할 수 있습니다. 200 : OK  
- 
+  
+### 5. `read` : 웹 페이지의 데이터를 읽어오기  
+<pre>
+import urllib.request
+req = urllib.request
+d = req.urlopen("https://github.com/huewilliams")
+print(d.status)
+print(d.read())
+</pre>
+결과
+``` html
+200
+b'\n\n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n  <link rel="dns-prefetch" href="https://assets-cdn.github.com">\n........(생략)
+```
+read() 함수를 사용하게 되면 문서의 HTML 코드를 출력합니다.  
+크롤러를 제작할 때도 read()함수를 사용해서 HTML 코드를 불러온 뒤 원하는 데이터만 골라내는 작업을 하게 됩니다.  
