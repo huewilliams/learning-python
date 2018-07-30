@@ -105,3 +105,18 @@ some_func(fargs, *args, **kwargs)
 일반적으로 함수의 데코레이터를 만들 때 사용합니다.    
 몽키패칭을 할 때도 사용할 수 있습니다.  
 몽키패칭은 런타임(실행) 중에 코드 일부를 수정한다는 것입니다.
+  
+  
+## `URLLIB` 라이브러리  
+urllib 라이브러리는 Python에서 웹과 관련된 데이터를 쉽게 이용하게 도와주는 라이브러리입니다.  
+### `request` 모듈 
+웹을 열어서 데이터를 읽어오는 역할
+### urlopen : 웹 문서 불러오기  
+<pre>
+import urllib.request
+req = urllib.request
+req.urlopen("https://kimdoky.github.io")
+결과 : http.client.HTTPResponse object at 0x102745358
+</pre>
+urlopen함수의 인수에 데이터를 얻고 싶은 웹 페이지의 주소를 넣어 사용합니다. 
+urlopen함수는 웹에서 얻은 데이터에 대한 객체를 돌려줍니다.
